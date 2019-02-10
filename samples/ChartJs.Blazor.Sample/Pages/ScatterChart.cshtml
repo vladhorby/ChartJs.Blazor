@@ -1,4 +1,5 @@
 ﻿@page "/ScatterChart"
+@inherits Microsoft.AspNetCore.Components.ComponentBase
 
 @using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.Common.Utils
@@ -11,9 +12,9 @@
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
 
-<ChartJsScatterChart ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300"/>
+<ChartJsScatterChart ref="scatterChartJs" Config="@scatterChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
 
 @functions{
 
@@ -46,59 +47,59 @@
             CanvasId = "myFirstScatterChart",
             Options = new ScatterConfigOptions
             {
-                Title = new OptionsTitle {Display = true, Text = "Scatter Chart"},
+                Title = new OptionsTitle { Display = true, Text = "Scatter Chart" },
                 Responsive = true
             },
             Data = new ScatterConfigData
             {
                 Datasets = new List<ScatterConfigDataset>
+            {
+                new ScatterConfigDataset
                 {
-                    new ScatterConfigDataset
+                    Label = "First dataset",
+                    BorderColor = "rgba(80,80,235,0.6)",
+                    BackgroundColor = "rgba(80,80,235,0.6)",
+                    BorderWidth = 3,
+                    PointRadius = 5,
+                    PointHitRadius = 5,
+                    Data = points,
+                    ShowLine = false
+                },
+                new ScatterConfigDataset
+                {
+                    Label = "Second dataset",
+                    BorderColor = "rgba(80,234,80,0.6)",
+                    BackgroundColor = "rgba(80,234,80,0.6)",
+                    BorderWidth = 3,
+                    PointRadius = 5,
+                    PointHitRadius = 5,
+                    ShowLine = true,
+                    Data = new List<Point>
                     {
-                        Label = "First dataset",
-                        BorderColor = "rgba(80,80,235,0.6)",
-                        BackgroundColor = "rgba(80,80,235,0.6)",
-                        BorderWidth = 3,
-                        PointRadius = 5,
-                        PointHitRadius = 5,
-                        Data = points,
-                        ShowLine = false
-                    },
-                    new ScatterConfigDataset
+                        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                        PointUtil.NewRandPoint(-10, 10, -10, 10)
+                    }
+                },
+                new ScatterConfigDataset
+                {
+                    Label = "Third dataset",
+                    BorderColor = "rgba(234,80,80,0.6)",
+                    BackgroundColor = "rgba(234,80,80,0.6)",
+                    BorderWidth = 3,
+                    PointRadius = 5,
+                    PointHitRadius = 5,
+                    ShowLine = false,
+                    Data = new List<Point>
                     {
-                        Label = "Second dataset",
-                        BorderColor = "rgba(80,234,80,0.6)",
-                        BackgroundColor = "rgba(80,234,80,0.6)",
-                        BorderWidth = 3,
-                        PointRadius = 5,
-                        PointHitRadius = 5,
-                        ShowLine = true,
-                        Data = new List<Point>
-                        {
-                            PointUtil.NewRandPoint(-10, 10, -10, 10),
-                            PointUtil.NewRandPoint(-10, 10, -10, 10),
-                            PointUtil.NewRandPoint(-10, 10, -10, 10),
-                            PointUtil.NewRandPoint(-10, 10, -10, 10)
-                        }
-                    },
-                    new ScatterConfigDataset
-                    {
-                        Label = "Third dataset",
-                        BorderColor = "rgba(234,80,80,0.6)",
-                        BackgroundColor = "rgba(234,80,80,0.6)",
-                        BorderWidth = 3,
-                        PointRadius = 5,
-                        PointHitRadius = 5,
-                        ShowLine = false,
-                        Data = new List<Point>
-                        {
-                            PointUtil.NewRandPoint(-10, 10, -10, 10),
-                            PointUtil.NewRandPoint(-10, 10, -10, 10),
-                            PointUtil.NewRandPoint(-10, 10, -10, 10),
-                            PointUtil.NewRandPoint(-10, 10, -10, 10)
-                        }
+                        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                        PointUtil.NewRandPoint(-10, 10, -10, 10),
+                        PointUtil.NewRandPoint(-10, 10, -10, 10)
                     }
                 }
+            }
             }
         };
     }
@@ -117,7 +118,7 @@
 
     public void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
 
         scatterChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(PointUtil.NewRandPoint(-10, 10, -10, 10)); });
 

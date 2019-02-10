@@ -5,14 +5,15 @@
 @using ChartJs.Blazor.Sample.Shared.Components
 @using ChartJs.Blazor.Util.Color
 @using Newtonsoft.Json
+@inherits Microsoft.AspNetCore.Components.ComponentBase
 
 <h2>Bubble Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsPolarAreaChart ref="polarAreaChart" Config="@polarAreaChartConfig" Width="600" Height="300"/>
+<ChartJsPolarAreaChart ref="polarAreaChart" Config="@polarAreaChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
 
 @functions{
 
@@ -41,27 +42,27 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Title = new OptionsTitle {Display = true, Text = "I R TITLE"},
-                Animation = new DoughnutAnimation {AnimateScale = true, AnimateRotate = true},
-                Scale = new PolarAreaScale {Ticks = new Ticks {BeginAtZero = true}},
-                Legend = new ChartJS.Common.Legends.Legend {Position = LegendPosition.TOP.ToString()}
+                Title = new OptionsTitle { Display = true, Text = "I R TITLE" },
+                Animation = new DoughnutAnimation { AnimateScale = true, AnimateRotate = true },
+                Scale = new PolarAreaScale { Ticks = new Ticks { BeginAtZero = true } },
+                Legend = new ChartJS.Common.Legends.Legend { Position = LegendPosition.TOP.ToString() }
             },
             Data = new PolarAreaData
             {
-                Labels = new List<string> {"A", "B", "C", "D"},
+                Labels = new List<string> { "A", "B", "C", "D" },
                 Datasets = new List<PolarAreaDataset>
+            {
+                new PolarAreaDataset
                 {
-                    new PolarAreaDataset
-                    {
-                        BackgroundColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
-                        HoverBackgroundColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
-                        Data = new List<int> {7, 4, 9, 7},
-                        BorderWidth = new List<int> {1, 1, 1, 1},
-                        BorderColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
-                        Label = "POLAR",
-                        HoverBorderColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()}
-                    }
+                    BackgroundColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+                    HoverBackgroundColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+                    Data = new List<int> {7, 4, 9, 7},
+                    BorderWidth = new List<int> {1, 1, 1, 1},
+                    BorderColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()},
+                    Label = "POLAR",
+                    HoverBorderColor = new List<string> {ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString(), ColorUtil.RandomColorString()}
                 }
+            }
             }
         };
     }

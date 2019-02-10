@@ -4,14 +4,15 @@
 @using ChartJs.Blazor.Util.Color
 @using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
+@inherits Microsoft.AspNetCore.Components.ComponentBase
 
 <h2>Bubble Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsBubbleChart ref="bubbleChartJs" Config="@bubbleChartConfig" Width="600" Height="300"/>
+<ChartJsBubbleChart ref="bubbleChartJs" Config="@bubbleChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
 
 @functions{
 
@@ -40,46 +41,46 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Title = new OptionsTitle {Display = true, Text = "I R TITLE"},
-                Tooltips = new Tooltips {Mode = Mode.point},
+                Title = new OptionsTitle { Display = true, Text = "I R TITLE" },
+                Tooltips = new Tooltips { Mode = Mode.point },
             },
             Data = new BubbleChartData
             {
-                Animation = new Animation {Duration = 0},
+                Animation = new Animation { Duration = 0 },
                 Datasets = new List<BubbleChartDataset>
+            {
+                new BubbleChartDataset
                 {
-                    new BubbleChartDataset
+                    BackgroundColor = ColorUtil.RandomColorString(),
+                    Label = "1'st dataset",
+                    Data = new List<BubbleData>
                     {
-                        BackgroundColor = ColorUtil.RandomColorString(),
-                        Label = "1'st dataset",
-                        Data = new List<BubbleData>
-                        {
-                            new BubbleData {x = 1, y = 1, r = 5},
-                            new BubbleData {x = 2, y = 1.9, r = 5},
-                            new BubbleData {x = 3, y = 3, r = 6}
-                        },
-                        BorderWidth = 1,
-                        BorderColor = "#ccddee"
+                        new BubbleData {x = 1, y = 1, r = 5},
+                        new BubbleData {x = 2, y = 1.9, r = 5},
+                        new BubbleData {x = 3, y = 3, r = 6}
                     },
-                    new BubbleChartDataset
+                    BorderWidth = 1,
+                    BorderColor = "#ccddee"
+                },
+                new BubbleChartDataset
+                {
+                    BackgroundColor = ColorUtil.RandomColorString(),
+                    Label = "2'd dataset",
+                    Data = new List<BubbleData>
                     {
-                        BackgroundColor = ColorUtil.RandomColorString(),
-                        Label = "2'd dataset",
-                        Data = new List<BubbleData>
-                        {
-                            new BubbleData {x = 1, y = 3, r = 9},
-                            new BubbleData {x = 2, y = 2.1, r = 7},
-                            new BubbleData {x = 3, y = 1, r = 3}
-                        },
-                        BorderWidth = 0,
-                        HitRadius = 3,
-                        Radius = 3,
-                        HoverRadius = 5,
-                        HoverBackgroundColor = "#f06384",
-                        HoverBorderColor = "#f06384",
-                        BorderColor = "#aabbcc"
-                    }
+                        new BubbleData {x = 1, y = 3, r = 9},
+                        new BubbleData {x = 2, y = 2.1, r = 7},
+                        new BubbleData {x = 3, y = 1, r = 3}
+                    },
+                    BorderWidth = 0,
+                    HitRadius = 3,
+                    Radius = 3,
+                    HoverRadius = 5,
+                    HoverBackgroundColor = "#f06384",
+                    HoverBorderColor = "#f06384",
+                    BorderColor = "#aabbcc"
                 }
+            }
             }
         };
     }

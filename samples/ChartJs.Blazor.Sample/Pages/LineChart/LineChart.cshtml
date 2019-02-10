@@ -4,14 +4,15 @@
 @using ChartJs.Blazor.ChartJS.LineChart
 @using ChartJs.Blazor.Sample.Shared.Components
 @using Newtonsoft.Json
+@inherits Microsoft.AspNetCore.Components.ComponentBase
 
 <h2>Line Chart</h2>
 <div class="row">
     <button class="btn btn-primary" onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300"/>
+<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
-<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300"/>
+<DataSetDisplay ref="_dataSetDisplay" bind-DataSetsStr="@DataSetsStr" Width="600" Height="300" />
 
 @functions{
 
@@ -40,7 +41,7 @@
                 Text = "Sample chart from Blazor",
                 Display = true,
                 Responsive = true,
-                Title = new OptionsTitle {Display = true, Text = "Line Chart"},
+                Title = new OptionsTitle { Display = true, Text = "Line Chart" },
                 Legend = new Legend
                 {
                     Position = LegendPosition.BOTTOM.ToString(),
@@ -57,29 +58,29 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
+                {
+                    new Axis
                     {
-                        new Axis
+                        Display = "xAxesDisplay",
+                        ScaleLabel = new ScaleLabel
                         {
-                            Display = "xAxesDisplay",
-                            ScaleLabel = new ScaleLabel
-                            {
-                                Display = ".",
-                                LabelString = ".labelString"
-                            }
-                        }
-                    },
-                    yAxes = new List<Axis>
-                    {
-                        new Axis
-                        {
-                            Display = "yAxes",
-                            ScaleLabel = new ScaleLabel
-                            {
-                                Display = "..",
-                                LabelString = "..label"
-                            }
+                            Display = ".",
+                            LabelString = ".labelString"
                         }
                     }
+                },
+                    yAxes = new List<Axis>
+                {
+                    new Axis
+                    {
+                        Display = "yAxes",
+                        ScaleLabel = new ScaleLabel
+                        {
+                            Display = "..",
+                            LabelString = "..label"
+                        }
+                    }
+                }
                 },
                 Hover = new LineChartOptionsHover
                 {
@@ -89,21 +90,21 @@
             },
             Data = new LineChartData
             {
-                Labels = new List<string> {"Red", "Blue", "Yellow", "Green", "Purple", "Orange"},
+                Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<LineChartDataset>
+            {
+                new LineChartDataset
                 {
-                    new LineChartDataset
-                    {
-                        BackgroundColor = "#ff6384",
-                        BorderColor = "#ff6384",
-                        Label = "# of Votes from blazor",
-                        Data = new List<object> {4, 6, 2, 7, 9, 1},
-                        Fill = false,
-                        BorderWidth = 2,
-                        PointRadius = 3,
-                        PointBorderWidth = 1
-                    }
+                    BackgroundColor = "#ff6384",
+                    BorderColor = "#ff6384",
+                    Label = "# of Votes from blazor",
+                    Data = new List<object> {4, 6, 2, 7, 9, 1},
+                    Fill = false,
+                    BorderWidth = 2,
+                    PointRadius = 3,
+                    PointBorderWidth = 1
                 }
+            }
             }
         };
     }
@@ -122,7 +123,7 @@
 
     public void UpdateChart()
     {
-    //Update existing dataset
+        //Update existing dataset
         var rand = new Random();
         lineChartConfig.Data.Labels.Add($"New{DateTime.Now.Second}");
 

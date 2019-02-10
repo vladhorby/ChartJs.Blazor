@@ -1,9 +1,11 @@
 ﻿@using ChartJs.Blazor.Sample.Shared.Extensions
 @using Microsoft.AspNetCore.Components
+@inherits Microsoft.AspNetCore.Components.ComponentBase
+
 <form style="margin-top: 20px">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="textAreaId" class="align-bottom" >Chart Dataset - You can Edit Me</label>
+            <label for="textAreaId" class="align-bottom">Chart Dataset - You can Edit Me</label>
         </div>
         <div class="form-group col-md-6">
             <button class="btn btn-primary float-right"
@@ -15,15 +17,15 @@
     </div>
     <div class="form-row">
         <textarea id="textAreaId"
-                      colspan="2"
-                      ref="datasetsTextArea"
-                      class="form-control"
-                      Width="@Width"
-                      Height="@Height"
-                      Rows="@Rows"
-                      oninput="@OnKeyUp"
-                      bind-value-onchange="@DataSetsStr"
-                      style="display: block; margin-left: auto; margin-right: auto"></textarea>
+                  colspan="2"
+                  ref="datasetsTextArea"
+                  class="form-control"
+                  Width="@Width"
+                  Height="@Height"
+                  Rows="@Rows"
+                  oninput="@OnKeyUp"
+                  bind-value-onchange="@DataSetsStr"
+                  style="display: block; margin-left: auto; margin-right: auto"></textarea>
     </div>
 </form>
 

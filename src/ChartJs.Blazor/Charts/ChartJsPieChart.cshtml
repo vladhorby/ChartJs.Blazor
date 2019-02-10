@@ -1,5 +1,7 @@
 ﻿@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.PieChart
+@using Microsoft.AspNetCore.Components
+@inherits Microsoft.AspNetCore.Components.ComponentBase
 
 <div class="row">
     <div class="container">
@@ -32,7 +34,7 @@
     {
         ChartJsInterop.UpdatePieChart(Config);
     }
-    
+
     public void Reload()
     {
         ChartJsInterop.ReloadPieChart(Config);

@@ -1,5 +1,7 @@
 ﻿@using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.LineChart
+@using Microsoft.AspNetCore.Components
+@inherits Microsoft.AspNetCore.Components.ComponentBase
 
 <div class="row">
     <div class="container">
@@ -39,7 +41,7 @@
     {
         ChartJsInterop.UpdateLineChart(Config);
     }
-    
+
     public void Reload()
     {
         ChartJsInterop.ReloadLineChart(Config);
