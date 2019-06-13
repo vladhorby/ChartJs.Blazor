@@ -17,7 +17,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
         /// <param name="args">Click event args</param>
         public delegate void InstanceClickHandler(object sender, object args);
 
-        public DotNetObjectRef InstanceRef { get; }
+        public DotNetObjectRef<InstanceClickHandler> InstanceRef { get; }
 
         public string MethodName { get; }
 
@@ -25,7 +25,7 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
         /// Creates a new instance of <see cref="DotNetStaticClickHandler"/>
         /// </summary>
         /// <param name="clickHandler">The delegate for a click handler.</param>
-        public DotNetInstanceClickHandler(InstanceClickHandler clickHandler)
+        public DotNetInstanceClickHandler(DotNetObjectRef<InstanceClickHandler> clickHandler)
         {
             if (clickHandler == null)
             {
@@ -33,13 +33,13 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
             }
 
             // the method needs to be public
-            if (!clickHandler.Method.IsPublic)
+            if (!clickHandler.Value.Method.IsPublic)
             {
                 throw new ArgumentException("The click handler needs to be public", nameof(clickHandler));
             }
 
             // the method needs to have the attribute JSInvokable
-            var isJsInvokable = clickHandler
+            var isJsInvokable = clickHandler.Value
                 .Method
                 .CustomAttributes.Any(data => data.AttributeType == typeof(JSInvokableAttribute));
             if (!isJsInvokable)
@@ -50,8 +50,8 @@ namespace ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler
 
             //AssemblyName = assembly.GetName().Name;
             // clickHandler.Method.DeclaringType.Assembly.GetName().Name;
-            InstanceRef = new DotNetObjectRef(clickHandler.Target);
-            MethodName = clickHandler.Method.Name;
+            InstanceRef = clickHandler;
+            MethodName = clickHandler.Value.Method.Name;
         }
     }
 }

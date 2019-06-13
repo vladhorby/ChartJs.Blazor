@@ -1,3 +1,4 @@
+using ChartJs.Blazor.ChartJS.MixedChart;
 using Newtonsoft.Json;
 
 namespace ChartJs.Blazor.ChartJS.Common
@@ -27,5 +28,7 @@ namespace ChartJs.Blazor.ChartJS.Common
         public TOptions Options { get; set; }
 
         public TData Data { get; set; }
+
+				public RenderOptions RenderOptions { get; set; }
     }
 }
